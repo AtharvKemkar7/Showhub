@@ -1,0 +1,55 @@
+server:
+  port: ${SERVER_PORT:8081}
+
+spring:
+  application:
+    name: identity-service
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/identity_db}
+    username: ${DATASOURCE_USERNAME:identity}
+    password: ${DATASOURCE_PASSWORD:identity}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+
+logging:
+  level:
+    root: INFO
+    com.eventplatform.identity: INFO
+    org.springframework.security: WARN
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:}
+    access-token-ttl: ${JWT_ACCESS_TTL:15m}
+    refresh-token-ttl: ${JWT_REFRESH_TTL:7d}
+  swagger:
+    public: ${SWAGGER_PUBLIC:true}
+  admin:
+    email: ${ADMIN_EMAIL:admin@eventplatform.local}
+    password: ${ADMIN_PASSWORD:AdminPass123!}
+    first-name: ${ADMIN_FIRST_NAME:Platform}
+    last-name: ${ADMIN_LAST_NAME:Admin}
