@@ -1,0 +1,4 @@
+com.eventplatform.common.security.SecurityBeansConfig
+com.eventplatform.common.exception.GlobalExceptionHandler
+com.eventplatform.common.web.CorrelationIdFilter
+com.eventplatform.common.messaging.MessagingAutoConfiguration
