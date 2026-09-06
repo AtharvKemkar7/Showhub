@@ -1,0 +1,41 @@
+server:
+  port: ${SERVER_PORT:8088}
+
+spring:
+  application:
+    name: notification-service
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/notification_db}
+    username: ${DATASOURCE_USERNAME:notification}
+    password: ${DATASOURCE_PASSWORD:notification}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+logging:
+  pattern:
+    console: "%d{ISO8601} [%X{correlationId}] %-5level %logger{36} - %msg%n"
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:}
+  swagger:
+    public: ${SWAGGER_PUBLIC:true}
+  internal-token: ${INTERNAL_TOKEN:dev-internal-token}

@@ -1,0 +1,19 @@
+server:
+  port: 0
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/notification_test
+    username: notification
+    password: notification
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+app:
+  jwt:
+    secret: test-jwt-secret-key-that-is-at-least-32-chars-long
+  swagger:
+    public: true
+  internal-token: dev-internal-token
