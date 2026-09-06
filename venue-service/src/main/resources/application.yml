@@ -1,0 +1,45 @@
+server:
+  port: ${SERVER_PORT:8083}
+
+spring:
+  application:
+    name: venue-service
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/venue_db}
+    username: ${DATASOURCE_USERNAME:venue}
+    password: ${DATASOURCE_PASSWORD:venue}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: never
+
+logging:
+  pattern:
+    console: "%d{ISO8601} [%X{correlationId}] %-5level %logger{36} - %msg%n"
+  level:
+    root: INFO
+    com.eventplatform: INFO
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:}
+  swagger:
+    public: ${SWAGGER_PUBLIC:true}

@@ -1,0 +1,18 @@
+server:
+  port: 0
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/venue_test
+    username: venue
+    password: venue
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+app:
+  jwt:
+    secret: test-jwt-secret-key-that-is-at-least-32-chars-long
+  swagger:
+    public: true
