@@ -1,0 +1,23 @@
+server:
+  port: 0
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/booking_test
+    username: booking
+    password: booking
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+app:
+  jwt:
+    secret: test-jwt-secret-key-that-is-at-least-32-chars-long
+  swagger:
+    public: true
+  internal-token: dev-internal-token
+  booking:
+    pending-ttl: 5m
+  clients:
+    stub: true
