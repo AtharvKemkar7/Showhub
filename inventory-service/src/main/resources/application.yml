@@ -1,0 +1,43 @@
+server:
+  port: ${SERVER_PORT:8085}
+
+spring:
+  application:
+    name: inventory-service
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/inventory_db}
+    username: ${DATASOURCE_USERNAME:inventory}
+    password: ${DATASOURCE_PASSWORD:inventory}
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+logging:
+  pattern:
+    console: "%d{ISO8601} [%X{correlationId}] %-5level %logger{36} - %msg%n"
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:}
+  swagger:
+    public: ${SWAGGER_PUBLIC:true}
+  lock:
+    ttl: ${SEAT_LOCK_TTL:5m}
+  internal-token: ${INTERNAL_TOKEN:dev-internal-token}

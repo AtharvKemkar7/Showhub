@@ -1,0 +1,25 @@
+server:
+  port: 0
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/inventory_test
+    username: inventory
+    password: inventory
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+app:
+  jwt:
+    secret: test-jwt-secret-key-that-is-at-least-32-chars-long
+  swagger:
+    public: true
+  lock:
+    ttl: 5s
+  internal-token: dev-internal-token
