@@ -1,0 +1,22 @@
+server:
+  port: 0
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/show_test
+    username: show
+    password: show
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+app:
+  jwt:
+    secret: test-jwt-secret-key-that-is-at-least-32-chars-long
+  swagger:
+    public: true
+  clients:
+    stub: true
+    event-base-url: http://localhost:8082
+    venue-base-url: http://localhost:8083
